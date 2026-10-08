@@ -139,9 +139,10 @@ export default {
       ),
     }),
     cta({
-      title: 'Hồ sơ giới thiệu HT DATA',
-      text: 'Tải bản giới thiệu tổng quan hoặc liên hệ để nhận hồ sơ năng lực phục vụ quá trình tìm hiểu, lập dự toán và mời thầu.',
-      buttons: [{ text: 'Liên hệ tư vấn', href: '/lien-he/#ho-so-nang-luc', lg: true }],
+      tone: 'white',
+      title: 'Trao đổi về nhu cầu của đơn vị',
+      text: 'Cung cấp loại hồ sơ, khối lượng dự kiến và yêu cầu triển khai để HT DATA đề xuất phương án phù hợp.',
+      buttons: [{ text: 'Liên hệ tư vấn', href: '/lien-he/', lg: true }],
     }),
   ].join('\n'),
 };

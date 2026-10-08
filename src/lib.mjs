@@ -131,9 +131,9 @@ export const faq = (items) => `
     .map((q, i) => `<details${i === 0 ? ' open' : ''}><summary><span>${q.q}</span>${icon.chev('#1f5fd0')}</summary><div class="a">${(Array.isArray(q.a) ? q.a : [q.a]).map((p) => `<p>${p}</p>`).join('')}</div></details>`)
     .join('')}</div>`;
 
-/** CTA cuối trang. */
-export const cta = ({ title, text, sub, buttons }) => `
-<section class="cta"><div class="wrap">
+/** CTA cuối trang. tone: '' (nền xám nhạt) | 'white' — dùng 'white' khi section ngay trên đã là nền xám. */
+export const cta = ({ title, text, sub, buttons, tone = '' }) => `
+<section class="cta${tone ? ' ' + tone : ''}"><div class="wrap">
   <div><h2>${title}</h2><p>${text}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>
   <div class="btns">${buttons.map(btn).join('')}</div>
 </div></section>`;

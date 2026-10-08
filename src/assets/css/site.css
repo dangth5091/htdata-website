@@ -402,6 +402,7 @@ a.prow:hover { border-color: var(--blue); box-shadow: 0 12px 30px rgba(31,95,208
 
 /* CTA cuối trang */
 .cta { background: var(--soft); border-top: 1px solid var(--hair); }
+.cta.white { background: #fff; }
 .cta .wrap { padding-block: 44px; display: flex; justify-content: space-between; align-items: center; gap: 32px; }
 .cta h2 { font-size: 25px; line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
 .home .cta h2 { font-size: 26px; }
