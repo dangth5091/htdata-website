@@ -14,11 +14,20 @@
       $('button', d).setAttribute('aria-expanded', 'false');
     });
   }
+  // Chuột: click giống hover — click chỉ mở, rời chuột khỏi mục menu là đóng.
+  // Bàn phím / màn cảm ứng (không có hover): click bật/tắt như cũ.
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
   dds.forEach(function (d) {
     var b = $('button', d);
+    d.addEventListener('mouseleave', function () {
+      if (!canHover.matches) return;
+      closeDd();
+      if (d.contains(document.activeElement)) document.activeElement.blur();
+    });
     b.addEventListener('click', function (e) {
       e.stopPropagation();
-      var open = !d.classList.contains('open');
+      var byMouse = e.detail > 0 && canHover.matches;
+      var open = byMouse ? true : !d.classList.contains('open');
       closeDd(d);
       d.classList.toggle('open', open);
       b.setAttribute('aria-expanded', String(open));
