@@ -147,7 +147,6 @@ body {
   font-size: 15px;
   line-height: 1.6;
   text-wrap: pretty;
-  -webkit-font-smoothing: antialiased;
 }
 img { display: block; max-width: 100%; }
 a { color: var(--blue); text-decoration: none; }
