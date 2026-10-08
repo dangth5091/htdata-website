@@ -147,7 +147,13 @@ body {
   font-size: 15px;
   line-height: 1.6;
   text-wrap: pretty;
+  /* Footer luôn ở đáy màn hình kể cả khi trang ít nội dung */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
+body > main { flex: 1 0 auto; }
 img { display: block; max-width: 100%; }
 a { color: var(--blue); text-decoration: none; }
 a:hover { color: var(--blue-d); text-decoration: underline; }
