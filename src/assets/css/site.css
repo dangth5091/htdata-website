@@ -174,7 +174,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .nav { display: flex; align-items: center; gap: 20px; font-size: 14.5px; }
 .nav > a, .nav-dd > button { color: #4a5464; padding: 8px 0; background: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
 .nav > a:hover, .nav-dd > button:hover { color: var(--blue); text-decoration: none; }
-.nav .is-active, .nav-dd.is-active > button { color: var(--blue); font-weight: 600; }
+.nav > a.is-active, .nav-dd.is-active > button { color: var(--blue); font-weight: 600; }
 .nav-dd { position: relative; }
 .nav-dd > button svg { transition: transform .15s; }
 .nav-dd.open > button svg { transform: rotate(180deg); }
@@ -190,7 +190,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .dd-menu a { display: block; padding: 9px 11px; border-radius: 7px; font-size: 14px; color: #1c2530; }
 .dd-menu a:hover { background: var(--soft); color: var(--blue); text-decoration: none; }
-.dd-menu a.is-active { background: #f2f6fd; color: var(--blue); font-weight: 600; }
+.dd-menu a.is-active { background: #f2f6fd; color: var(--blue); }
 .nav .nav-cta { background: var(--blue); color: #fff; padding: 11px 18px; border-radius: 8px; font-weight: 600; }
 .nav .nav-cta:hover, .nav .nav-cta.is-active { background: var(--blue-d); color: #fff; }
 .menu-btn { display: none; width: 44px; height: 44px; margin-right: -6px; border: 0; background: none; cursor: pointer; place-items: center; }
