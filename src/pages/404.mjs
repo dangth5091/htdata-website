@@ -4,6 +4,7 @@ export default {
   path: '/404.html',
   file: '404.html',
   noindex: true,
+  bodyClass: 'page-fill',
   title: 'Không tìm thấy trang',
   body: `
 <section class="blank"><div class="wrap">

@@ -154,6 +154,9 @@ body {
   flex-direction: column;
 }
 body > main { flex: 1 0 auto; }
+/* Trang chỉ có một section (Tin tức, 404): section giãn kín phần trống để nền liền tới footer */
+.page-fill main { display: flex; flex-direction: column; }
+.page-fill main > section { flex: 1 0 auto; border-bottom: 0; }
 img { display: block; max-width: 100%; }
 a { color: var(--blue); text-decoration: none; }
 a:hover { color: var(--blue-d); text-decoration: underline; }

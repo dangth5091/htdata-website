@@ -4,6 +4,7 @@ export default {
   path: '/tin-tuc/',
   nav: 'tin-tuc',
   crumb: [{ t: 'Tin tức' }],
+  bodyClass: 'page-fill',
   title: 'Tin tức',
   description: 'Tin tức và tài liệu chuyên môn của HT DATA về chỉnh lý, số hóa và quản lý hồ sơ.',
   body: `
