@@ -60,6 +60,6 @@ Mọi vị trí ảnh đang là khung chờ có chú thích. Muốn thay, đặt
 |---|---|
 | `404.html` | Đường dẫn sai hoặc trang đã đổi địa chỉ. GitHub Pages tự dùng file này. |
 | `500.html` | Máy chủ gặp sự cố. GitHub Pages không phát sinh lỗi 500; file dành cho khi chuyển sang máy chủ riêng (vd. nginx `error_page 500 502 504 /500.html;`). |
-| `503.html` | Website tạm dừng để bảo trì. Trước mỗi lần bảo trì, sửa giờ hoạt động lại trong `errors.mjs`. Trên máy chủ riêng: `error_page 503 /503.html;` và trả mã 503 cho mọi đường dẫn khác. |
+| `503.html` (bản sao: `/bao-tri/`) | Website tạm dừng để bảo trì. GitHub Pages giữ riêng đường dẫn `/503.html` cho trang của GitHub, nên trên site hiện tại xem trang này ở `/bao-tri/`. Trước mỗi lần bảo trì, sửa giờ hoạt động lại trong `errors.mjs`. Trên máy chủ riêng: `error_page 503 /503.html;` và trả mã 503 cho mọi đường dẫn khác. |
 
 Cả ba trang đều có `noindex` và không nằm trong sitemap.

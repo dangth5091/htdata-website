@@ -38,6 +38,8 @@ for (const page of pages) {
   const dest = join(OUT, file);
   mkdirSync(dirname(dest), { recursive: true });
   writeFileSync(dest, html);
+  // Bản sao ở đường dẫn khác, vd. 503.html (GitHub Pages giữ riêng tên này nên trang bảo trì xem tại /bao-tri/).
+  for (const alias of page.aliases || []) writeFileSync(join(OUT, alias), html);
 }
 
 cpSync(join(SRC, 'assets'), join(OUT, 'assets'), { recursive: true });

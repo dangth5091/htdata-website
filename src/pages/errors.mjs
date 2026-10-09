@@ -73,8 +73,9 @@ const page500 = {
 };
 
 const page503 = {
-  path: '/503.html',
-  file: '503.html',
+  path: '/bao-tri/',
+  file: 'bao-tri/index.html',
+  aliases: ['503.html'],
   noindex: true,
   bodyClass: 'page-fill',
   header: 'minimal',
