@@ -480,6 +480,34 @@ button[disabled] { opacity: .7; cursor: progress; }
 .f-bottom { border-top: 1px solid var(--navy-line); }
 .f-bottom .wrap { padding-block: 16px; display: flex; justify-content: space-between; gap: 16px; font-size: 12px; color: var(--navy-label); }
 
+/* Trang lỗi 404 / 500 / 503 */
+.err { background: var(--soft); }
+.err .wrap.err-grid { padding-block: 80px 88px; display: grid; grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 56px; align-items: start; }
+.err-maint .wrap.err-grid { padding-block: 96px 104px; }
+.err h1 { font-size: 40px; line-height: 1.18; font-weight: 700; letter-spacing: -0.025em; }
+.err .lead { font-size: 17px; line-height: 29px; color: var(--muted); margin-top: 20px; max-width: 46ch; }
+.err .btns { margin-top: 28px; }
+.err-side { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+.err-side-t { margin-bottom: 14px; }
+.err-links { display: grid; }
+.err-links a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--hair); font-size: 15px; font-weight: 600; color: var(--text); }
+.err-links a:last-child { border-bottom: 0; padding-bottom: 0; }
+.err-links a:hover { color: var(--blue); text-decoration: none; }
+.err-links a span:last-child { color: var(--blue); }
+.err-help { font-size: 13.5px; line-height: 22px; color: var(--muted); margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--hair); }
+.err-help a { font-weight: 600; }
+.err-row { padding: 14px 0; border-bottom: 1px solid var(--hair); }
+.err-row:first-child, .err-side-t + .err-row, .err-side-t + div > .err-row:first-child { padding-top: 0; }
+.err-row:last-child, .d-only > .err-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.err-k { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.err-hot { font-size: 20px; font-weight: 700; color: var(--blue); }
+.err-mail { font-size: 15px; font-weight: 600; }
+.err-addr { font-size: 14.5px; line-height: 23px; color: var(--text); }
+.err-eta { margin-top: 28px; display: inline-grid; gap: 4px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; }
+.err-eta > span { font-size: 13px; color: var(--muted); }
+.err-eta strong { font-size: 18px; font-weight: 700; color: var(--text); }
+.hdr-hotline { font-size: 14.5px; font-weight: 600; }
+
 .mbar, .to-top { display: none; }
 
 /* ── Mobile (< 1024px) ────────────────────────────── */
@@ -620,6 +648,26 @@ button[disabled] { opacity: .7; cursor: progress; }
   .blank { padding-block: 40px 48px; }
   .blank h1 { font-size: 26px; }
   .blank p { font-size: 14.5px; line-height: 24px; }
+
+  /* Trang lỗi — mobile: khối chính nền xám, phần gợi ý / liên hệ nền trắng bên dưới */
+  .err { background: #fff; }
+  .err .wrap.err-grid, .err-maint .wrap.err-grid { padding-block: 0; grid-template-columns: 1fr; gap: 0; }
+  .err-main { margin-inline: calc(-1 * var(--pad)); padding: 36px var(--pad) 32px; background: var(--soft); }
+  .err h1 { font-size: 26px; line-height: 1.22; letter-spacing: -0.02em; }
+  .err .lead { font-size: 14.5px; line-height: 24px; margin-top: 12px; }
+  .err .btns { margin-top: 20px; }
+  .err-side { border: 0; border-radius: 0; padding: 22px 0; background: none; }
+  .err-maint .err-side { display: none; }
+  .err-side-t { font-size: 12px; margin-bottom: 6px; }
+  .err-links a { min-height: 48px; padding: 0; font-size: 14.5px; }
+  .err-links a:last-child { padding: 0; }
+  .err-call { width: 100%; color: var(--blue); border-color: #c9d4e8; margin-top: 4px; }
+  .err-note { font-size: 13px; line-height: 21px; color: var(--muted); margin-top: 10px; }
+  .err-note a { font-weight: 600; }
+  .err-eta { margin-top: 18px; display: grid; padding: 14px 16px; }
+  .err-eta > span { font-size: 12.5px; }
+  .err-eta strong { font-size: 16px; }
+  .err-mbtns { display: grid; gap: 10px; padding: 22px 0; }
 
   .f-grid { grid-template-columns: 1fr 1fr; gap: 24px 16px; padding-block: 24px 16px; }
   .f-grid > :first-child, .f-grid > :last-child { grid-column: 1 / -1; }

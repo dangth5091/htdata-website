@@ -53,3 +53,13 @@ Mọi vị trí ảnh đang là khung chờ có chú thích. Muốn thay, đặt
 
 - Dự án mới: thêm một mục vào `projects` trong `src/data/site.mjs` (thẻ ở trang chủ, trang dịch vụ, trang Dự án và chip lọc tự cập nhật).
 - Case study: thêm một mục vào mảng `cases` trong `src/pages/case-studies.mjs`, rồi gán `href` tương ứng cho dự án.
+
+## Trang lỗi (`src/pages/errors.mjs`)
+
+| File | Khi nào hiển thị |
+|---|---|
+| `404.html` | Đường dẫn sai hoặc trang đã đổi địa chỉ. GitHub Pages tự dùng file này. |
+| `500.html` | Máy chủ gặp sự cố. GitHub Pages không phát sinh lỗi 500; file dành cho khi chuyển sang máy chủ riêng (vd. nginx `error_page 500 502 504 /500.html;`). |
+| `503.html` | Website tạm dừng để bảo trì. Trước mỗi lần bảo trì, sửa giờ hoạt động lại trong `errors.mjs`. Trên máy chủ riêng: `error_page 503 /503.html;` và trả mã 503 cho mọi đường dẫn khác. |
+
+Cả ba trang đều có `noindex` và không nằm trong sitemap.

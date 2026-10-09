@@ -227,6 +227,13 @@ function header(active, activeHref) {
 <nav class="mnav" id="mnav" aria-label="Menu">${nav.map(mItem).join('')}</nav>`;
 }
 
+/** Header rút gọn cho trang bảo trì: không có menu vì mọi trang khác đều tạm dừng. */
+const minimalHeader = () => `
+<header class="site-header"><div class="wrap">
+  <span class="brand">${logo(32)}<span>HT DATA</span></span>
+  <a class="hdr-hotline d-only" href="tel:${site.hotlineTel}">Hotline ${site.hotline}</a>
+</div></header>`;
+
 function footer() {
   const s = site;
   return `
@@ -267,8 +274,8 @@ export function layout(page, cfg) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${attr(desc)}">
-${cfg.preview ? '<meta name="robots" content="noindex, nofollow">' : ''}
-<link rel="canonical" href="${url}">
+${cfg.preview || page.noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
+${page.noindex ? '' : `<link rel="canonical" href="${url}">`}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:site_name" content="HT DATA">
@@ -285,13 +292,13 @@ ${ld}
 </head>
 <body class="${page.bodyClass || ''}" id="top">
 <a class="skip" href="#main">Bỏ qua menu</a>
-${header(page.nav, page.path)}
+${page.header === 'minimal' ? minimalHeader() : header(page.nav, page.path)}
 ${breadcrumb(page.crumb)}
 <main id="main">
 ${page.body}
 </main>
 ${footer()}
-${mbar()}
+${page.mbar === false ? '' : mbar()}
 <div class="lb" role="dialog" aria-modal="true" aria-label="Xem ảnh"><button class="lb-close" type="button" aria-label="Đóng">${icon.close()}</button><div class="lb-inner"></div></div>
 <script>window.HT=${JSON.stringify({ form: cfg.formEndpoint, email: site.email })}</script>
 <script src="/assets/js/site.js?v=${cfg.version}" defer></script>
