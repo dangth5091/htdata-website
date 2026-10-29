@@ -14,7 +14,12 @@ const hero = `
   ${img('home-hero', 'Ảnh thật: nhân sự HT DATA chỉnh lý hồ sơ tại kho của đơn vị', '4-3', 'framed')}
 </div></section>`;
 
-const stats = statStrip([
+// TẠM ẨN dải số liệu dưới hero. Đổi thành true để hiện lại; nền các khối bên dưới tự đảo theo.
+const SHOW_STATS = false;
+/** Nền của khối bên dưới dải số liệu: khi ẩn dải, đảo trắng ↔ xám để hero (xám) không liền với khối xám. */
+const t = (tone) => (SHOW_STATS ? tone : tone === 'soft' ? '' : 'soft');
+
+const stats = SHOW_STATS && statStrip([
   { n: v('7+ năm'), l: 'Kinh nghiệm chỉnh lý và số hoá' },
   ...ifProjects([
     { n: v('1,2 triệu'), l: 'Trang tài liệu đã số hóa' },
@@ -24,7 +29,7 @@ const stats = statStrip([
 ]);
 
 const services = section({
-  tone: 'soft',
+  tone: t('soft'),
   title: 'Dịch vụ',
   lead: 'HT DATA triển khai trọn gói hoặc theo từng hạng mục theo yêu cầu của từng đơn vị.',
   body: bulletCards([
@@ -36,6 +41,7 @@ const services = section({
 });
 
 const audiences = section({
+  tone: t(''),
   title: 'Cơ quan HT DATA phục vụ',
   lead: 'Phương án triển khai được xây dựng theo yêu cầu, hướng dẫn và điều kiện thực tế của từng đơn vị.',
   body: bulletCards(
@@ -50,7 +56,7 @@ const audiences = section({
 });
 
 const work = ifProjects(section({
-  tone: 'soft',
+  tone: t('soft'),
   title: 'Dự án đã thực hiện',
   lead: 'Kinh nghiệm được thể hiện bằng kết quả thực tế.',
   more: { text: 'Toàn bộ dự án →', href: '/du-an/' },
@@ -70,7 +76,7 @@ const tech = navyBlock({
 });
 
 const apps = section({
-  tone: 'soft',
+  tone: t('soft'),
   title: 'Bộ phần mềm HT DATA',
   lead: 'Đơn vị có thể triển khai từng phần mềm hoặc kết nối thành một hệ thống duy nhất.',
   body: bulletCards(
@@ -85,6 +91,7 @@ const apps = section({
 });
 
 const process = section({
+  tone: t(''),
   title: 'Quy trình triển khai',
   lead: 'Mỗi bước đều có phạm vi công việc, kết quả và tài liệu xác nhận rõ ràng.',
   body: steps(
@@ -106,7 +113,7 @@ export default {
     'HT DATA triển khai trọn gói từ khảo sát hiện trạng, chỉnh lý và số hóa tài liệu đến xây dựng cơ sở dữ liệu, phần mềm tra cứu và quản lý hồ sơ sau bàn giao.',
   body: [
     hero,
-    stats,
+    stats || '',
     services,
     audiences,
     work,
@@ -114,6 +121,7 @@ export default {
     apps,
     process,
     cta({
+      tone: SHOW_STATS ? '' : 'white',
       title: 'Đơn vị cần chỉnh lý, số hóa hay quản lý hồ sơ?',
       text: 'HT DATA sẽ khảo sát hiện trạng, xác định khối lượng và đề xuất phương án dịch vụ, phần mềm hoặc mô hình kết hợp phù hợp.',
       buttons: [{ text: 'Yêu cầu khảo sát', href: '/lien-he/', lg: true }, { ...callBtn, text: '0911.515.032', lg: true }],
