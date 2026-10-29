@@ -517,12 +517,11 @@ button[disabled] { opacity: .7; cursor: progress; }
 .err-eta strong { font-size: 18px; font-weight: 700; color: var(--text); }
 .hdr-hotline { font-size: 14.5px; font-weight: 600; }
 
-.mbar, .to-top { display: none; }
+.to-top { display: none; }
 
 /* ── Mobile (< 1024px) ────────────────────────────── */
 @media (max-width: 1023.98px) {
   :root { --pad: 16px; --header-h: 51px; }
-  body { padding-bottom: 72px; }
   .brand { gap: 9px; }
   .brand svg { width: 26px; height: 26px; }
   .brand span { font-size: 17px; }
@@ -683,12 +682,7 @@ button[disabled] { opacity: .7; cursor: progress; }
   .f-bottom .wrap { display: block; font-size: 11.5px; line-height: 18px; }
   .f-bottom .wrap span { display: block; }
 
-  .mbar { display: grid; grid-template-columns: auto 1fr; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 48; background: #fff; border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -6px 20px rgba(16,42,76,0.08); }
-  .mbar a { min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 9px; font-size: 15px; font-weight: 600; padding: 0 16px; }
-  .mbar a:hover { text-decoration: none; }
-  .mbar .call { border: 1px solid var(--btn-line); color: var(--blue); }
-  .mbar .go { background: var(--blue); color: #fff; }
-  .to-top { position: fixed; right: 16px; bottom: 84px; z-index: 47; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: 0 6px 18px rgba(16,42,76,0.2); display: grid; place-items: center; opacity: 0; visibility: hidden; transition: opacity .2s, visibility 0s linear .2s; }
+  .to-top { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 47; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); box-shadow: 0 6px 18px rgba(16,42,76,0.2); display: grid; place-items: center; opacity: 0; visibility: hidden; transition: opacity .2s, visibility 0s linear .2s; }
   .to-top.show { opacity: 1; visibility: visible; transition-delay: 0s; }
 }
 

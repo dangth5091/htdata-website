@@ -274,8 +274,8 @@ function footer() {
 </footer>`;
 }
 
+// Thanh dính đáy mobile (hotline + "Yêu cầu khảo sát") đã bỏ theo yêu cầu; chỉ còn nút lên đầu trang.
 const mbar = () => `
-<div class="mbar"><a class="call" href="tel:${site.hotlineTel}">${icon.phone('#1f5fd0')}${site.hotline}</a><a class="go" href="/lien-he/">Yêu cầu khảo sát</a></div>
 <a class="to-top" href="#top" aria-label="Lên đầu trang">${icon.up()}</a>`;
 
 /** Ghép thành trang HTML hoàn chỉnh. */
