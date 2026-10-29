@@ -1,3 +1,4 @@
+import { SHOW_PROJECTS } from '../data/site.mjs';
 // Case study: mọi dự án dùng chung một bố cục — thêm dự án mới là thêm một mục vào mảng `cases`.
 import { section, cards, listCards, linkCards, spec, cta, callBtn, statStrip, gallery, img, v } from '../lib.mjs';
 
@@ -90,7 +91,7 @@ const cases = [
 
 const strip = (s) => (s && s.replace(/<[^>]+>/g, '')) || '';
 
-export default cases.map((c, i) => ({
+const pages = cases.map((c, i) => ({
   path: c.path,
   nav: 'du-an',
   crumb: [{ t: 'Dự án', href: '/du-an/' }, { t: c.crumb }],
@@ -122,3 +123,6 @@ export default cases.map((c, i) => ({
     }),
   ].join('\n'),
 }));
+
+// Tạm ẩn khi SHOW_PROJECTS = false (không dựng trang).
+export default SHOW_PROJECTS ? pages : [];

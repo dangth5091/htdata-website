@@ -1,5 +1,5 @@
 import { section, cards, steps, listCards, navyBlock, projectCards, faq, cta, callBtn, factStrip, img, btns } from '../lib.mjs';
-import { projects } from '../data/site.mjs';
+import { projects, ifProjects } from '../data/site.mjs';
 
 const hero = `
 <section class="hero"><div class="wrap hero-split">
@@ -9,7 +9,7 @@ const hero = `
     <p class="lead">HT DATA phân loại, lập hồ sơ, biên mục và hệ thống hóa khối tài liệu tồn đọng, giúp đơn vị quản lý khoa học hơn và thuận tiện cho việc tra cứu, giao nộp.</p>
     ${btns([
       { text: 'Yêu cầu khảo sát', href: '/lien-he/' },
-      { text: 'Xem dự án chỉnh lý', href: '/du-an/?dich-vu=chinh-ly', primary: false },
+      ...ifProjects([{ text: 'Xem dự án chỉnh lý', href: '/du-an/?dich-vu=chinh-ly', primary: false }], []),
     ])}
   </div>
   ${img('dv-chinh-ly', 'Ảnh thật: nhân sự HT DATA đang phân loại hoặc biên mục hồ sơ tại đơn vị', '4-3')}
@@ -86,14 +86,15 @@ export default {
         { t: 'Kiểm tra độc lập', d: 'Người thực hiện và người kiểm tra được phân công độc lập tại những công đoạn cần kiểm soát chất lượng.' },
       ]),
     }),
-    section({
+    ifProjects(section({
       tone: 'soft',
       title: 'Dự án liên quan',
       lead: 'Các dự án thể hiện khối lượng, phạm vi và kết quả HT DATA đã thực hiện.',
       more: { text: 'Toàn bộ dự án →', href: '/du-an/?dich-vu=chinh-ly' },
       body: projectCards(projects.slice(0, 3)),
-    }),
+    })),
     section({
+      tone: ifProjects('', 'soft'),
       title: 'Câu hỏi thường gặp',
       body: faq([
         { q: 'Chi phí chỉnh lý được tính như thế nào?', a: ['Chi phí thường được xác định theo số mét giá tài liệu và mức độ hoàn thiện của hồ sơ. Tài liệu rời, lẫn nhiều năm hoặc chưa được phân loại sẽ có khối lượng công việc khác với tài liệu đã được sắp xếp sơ bộ.', 'Sau khi khảo sát, HT DATA sẽ bóc tách từng hạng mục và lập dự toán theo khối lượng thực tế, yêu cầu nghiệp vụ và điều kiện thi công của đơn vị.'] },
@@ -104,6 +105,7 @@ export default {
       ]),
     }),
     cta({
+      tone: ifProjects('', 'white'),
       title: 'Khối tài liệu của đơn vị chưa được phân loại?',
       text: 'HT DATA sẽ khảo sát hiện trạng, xác định khối lượng và đề xuất phương án chỉnh lý phù hợp.',
       buttons: [callBtn, { text: 'Yêu cầu khảo sát', href: '/lien-he/', lg: true }],

@@ -1,5 +1,5 @@
 import { section, cards, steps, listCards, projectCards, faq, cta, factStrip, img, btns } from '../lib.mjs';
-import { projects } from '../data/site.mjs';
+import { projects, ifProjects } from '../data/site.mjs';
 
 const hero = `
 <section class="hero"><div class="wrap hero-split">
@@ -9,7 +9,7 @@ const hero = `
     <p class="lead">HT DATA chuyển đổi hồ sơ giấy thành dữ liệu số có tổ chức, được kiểm tra chất lượng và đặt chỉ mục để phục vụ tìm kiếm, tra cứu và quản lý lâu dài.</p>
     ${btns([
       { text: 'Yêu cầu khảo sát', href: '/lien-he/' },
-      { text: 'Xem dự án số hóa', href: '/du-an/?dich-vu=so-hoa', primary: false },
+      ...ifProjects([{ text: 'Xem dự án số hóa', href: '/du-an/?dich-vu=so-hoa', primary: false }], []),
     ])}
   </div>
   ${img('dv-so-hoa', 'Ảnh thật: nhân sự vận hành máy scan hoặc kiểm tra hình ảnh sau quét', '4-3')}
@@ -84,13 +84,13 @@ export default {
       ]),
     }),
     navyBanner,
-    section({
+    ifProjects(section({
       tone: 'soft',
       title: 'Dự án liên quan',
       lead: 'Các dự án số hóa theo nhiều loại tài liệu và yêu cầu đầu ra khác nhau.',
       more: { text: 'Toàn bộ dự án →', href: '/du-an/?dich-vu=so-hoa' },
       body: projectCards(related.length ? related : projects.slice(0, 3)),
-    }),
+    })),
     section({
       title: 'Câu hỏi thường gặp',
       body: faq([

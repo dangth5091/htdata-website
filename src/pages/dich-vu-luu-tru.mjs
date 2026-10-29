@@ -1,5 +1,5 @@
 import { section, cards, steps, listCards, projectCards, faq, cta, callBtn, factStrip, img, btns } from '../lib.mjs';
-import { projects } from '../data/site.mjs';
+import { projects, ifProjects } from '../data/site.mjs';
 
 const hero = `
 <section class="hero"><div class="wrap hero-split">
@@ -84,13 +84,13 @@ export default {
       ]),
     }),
     navyBanner,
-    section({
+    ifProjects(section({
       tone: 'soft',
       title: 'Dự án liên quan',
       lead: 'Các dự án tổ chức kho, mã hóa vị trí và quản lý hồ sơ tập trung.',
       more: { text: 'Toàn bộ dự án →', href: '/du-an/?dich-vu=quan-ly-luu-tru' },
       body: projectCards(related.length ? related : projects.slice(0, 3)),
-    }),
+    })),
     section({
       title: 'Câu hỏi thường gặp',
       body: faq([

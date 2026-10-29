@@ -1,5 +1,6 @@
 import { projectRows, cta } from '../lib.mjs';
 import { projects, groups, serviceKeys } from '../data/site.mjs';
+import { SHOW_PROJECTS } from '../data/site.mjs';
 
 const count = (k) => projects.filter((p) => p.nhom === k).length;
 const chips = `
@@ -10,7 +11,7 @@ const chips = `
 </div>
 <p class="lead" style="font-size:14px;color:var(--muted);margin-top:12px" hidden data-filter-note ${serviceKeys.map((s) => `data-${s.key}="${s.t}"`).join(' ')}></p>`;
 
-export default {
+const page = {
   path: '/du-an/',
   nav: 'du-an',
   crumb: [{ t: 'Dự án' }],
@@ -32,3 +33,6 @@ ${cta({
   buttons: [{ text: 'Liên hệ HT DATA', href: '/lien-he/', lg: true }],
 })}`,
 };
+
+// Tạm ẩn khi SHOW_PROJECTS = false (không dựng trang).
+export default SHOW_PROJECTS ? page : [];

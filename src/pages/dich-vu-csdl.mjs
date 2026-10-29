@@ -1,5 +1,5 @@
 import { section, cards, steps, listCards, projectCards, faq, cta, callBtn, factStrip, img, btns } from '../lib.mjs';
-import { projects } from '../data/site.mjs';
+import { projects, ifProjects } from '../data/site.mjs';
 
 const hero = `
 <section class="hero"><div class="wrap hero-split">
@@ -9,7 +9,7 @@ const hero = `
     <p class="lead">Chuyển thông tin trong hồ sơ giấy hoặc bản scan thành dữ liệu có cấu trúc, có thể tìm kiếm, thống kê và đưa vào phần mềm quản lý.</p>
     ${btns([
       { text: 'Trao đổi nhu cầu dữ liệu', href: '/lien-he/' },
-      { text: 'Xem dự án liên quan', href: '/du-an/?dich-vu=co-so-du-lieu', primary: false },
+      ...ifProjects([{ text: 'Xem dự án liên quan', href: '/du-an/?dich-vu=co-so-du-lieu', primary: false }], []),
     ])}
   </div>
   ${img('dv-csdl', 'Ảnh thật: nhân sự nhập liệu hoặc màn hình kiểm tra dữ liệu (đã ẩn thông tin nhạy cảm)', '4-3')}
@@ -84,13 +84,13 @@ export default {
       ]),
     }),
     navyBanner,
-    section({
+    ifProjects(section({
       tone: 'soft',
       title: 'Dự án liên quan',
       lead: 'Các dự án xây dựng dữ liệu theo từng loại hồ sơ và nghiệp vụ.',
       more: { text: 'Toàn bộ dự án →', href: '/du-an/?dich-vu=co-so-du-lieu' },
       body: projectCards(related.length ? related : projects.slice(0, 3)),
-    }),
+    })),
     section({
       title: 'Câu hỏi thường gặp',
       body: faq([

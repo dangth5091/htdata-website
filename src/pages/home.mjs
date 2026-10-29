@@ -1,5 +1,5 @@
 import { section, bulletCards, projectCards, navyBlock, steps, cta, callBtn, statStrip, img, btns, v } from '../lib.mjs';
-import { projects } from '../data/site.mjs';
+import { projects, ifProjects } from '../data/site.mjs';
 
 const hero = `
 <section class="hero"><div class="wrap hero-home">
@@ -8,7 +8,7 @@ const hero = `
     <p class="lead">HT DATA triển khai trọn gói từ khảo sát hiện trạng, chỉnh lý và số hóa tài liệu đến xây dựng cơ sở dữ liệu, phần mềm tra cứu và quản lý hồ sơ sau bàn giao.</p>
     ${btns([
       { text: 'Yêu cầu khảo sát', href: '/lien-he/', lg: true },
-      { text: 'Dự án đã thực hiện', href: '/du-an/', primary: false, lg: true },
+      ...ifProjects([{ text: 'Dự án đã thực hiện', href: '/du-an/', primary: false, lg: true }], []),
     ])}
   </div>
   ${img('home-hero', 'Ảnh thật: nhân sự HT DATA chỉnh lý hồ sơ tại kho của đơn vị', '4-3', 'framed')}
@@ -16,8 +16,10 @@ const hero = `
 
 const stats = statStrip([
   { n: v('7+ năm'), l: 'Kinh nghiệm chỉnh lý và số hoá' },
-  { n: v('1,2 triệu'), l: 'Trang tài liệu đã số hóa' },
-  { n: v('3.400'), l: 'Mét giá đã chỉnh lý' },
+  ...ifProjects([
+    { n: v('1,2 triệu'), l: 'Trang tài liệu đã số hóa' },
+    { n: v('3.400'), l: 'Mét giá đã chỉnh lý' },
+  ], []),
   { n: v('500+'), l: 'Nhân sự chính thức và thời vụ' },
 ]);
 
@@ -38,22 +40,22 @@ const audiences = section({
   lead: 'Phương án triển khai được xây dựng theo yêu cầu, hướng dẫn và điều kiện thực tế của từng đơn vị.',
   body: bulletCards(
     [
-      { t: 'Khối Đảng', href: '/du-an/?nhom=khoi-dang', items: ['Tài liệu của tỉnh ủy, đảng ủy và các ban xây dựng Đảng', 'Thực hiện theo hướng dẫn nghiệp vụ của khối Đảng', 'Thi công tại trụ sở khi tài liệu không được phép đưa ra ngoài'] },
-      { t: 'Chính quyền địa phương', href: '/du-an/?nhom=ubnd', items: ['UBND các cấp, sở, ban, ngành và cơ quan chuyên môn', 'Chỉnh lý hồ sơ tồn đọng phục vụ quản lý và giao nộp', 'Số hóa, xây dựng cơ sở dữ liệu và phần mềm theo nhu cầu'] },
-      { t: 'Cơ quan tư pháp', href: '/du-an/?nhom=toa-an', items: ['Hồ sơ vụ án hình sự, dân sự, hành chính và tài liệu nghiệp vụ', 'Yêu cầu chặt chẽ về bảo mật, phân quyền và nhật ký sử dụng', 'Tra cứu theo số thụ lý, loại án và các trường thông tin nghiệp vụ'] },
-      { t: 'Cơ quan, đơn vị khác', href: '/du-an/?nhom=co-quan-khac', cta: 'Xem các dự án khác →', items: ['Ban quản lý dự án, đơn vị sự nghiệp công lập', 'Cơ quan chuyên môn, tổ chức ngành dọc tại địa phương', 'Khảo sát để lựa chọn dịch vụ và phần mềm phù hợp'] },
+      { t: 'Khối Đảng', href: ifProjects('/du-an/?nhom=khoi-dang'), items: ['Tài liệu của tỉnh ủy, đảng ủy và các ban xây dựng Đảng', 'Thực hiện theo hướng dẫn nghiệp vụ của khối Đảng', 'Thi công tại trụ sở khi tài liệu không được phép đưa ra ngoài'] },
+      { t: 'Chính quyền địa phương', href: ifProjects('/du-an/?nhom=ubnd'), items: ['UBND các cấp, sở, ban, ngành và cơ quan chuyên môn', 'Chỉnh lý hồ sơ tồn đọng phục vụ quản lý và giao nộp', 'Số hóa, xây dựng cơ sở dữ liệu và phần mềm theo nhu cầu'] },
+      { t: 'Cơ quan tư pháp', href: ifProjects('/du-an/?nhom=toa-an'), items: ['Hồ sơ vụ án hình sự, dân sự, hành chính và tài liệu nghiệp vụ', 'Yêu cầu chặt chẽ về bảo mật, phân quyền và nhật ký sử dụng', 'Tra cứu theo số thụ lý, loại án và các trường thông tin nghiệp vụ'] },
+      { t: 'Cơ quan, đơn vị khác', href: ifProjects('/du-an/?nhom=co-quan-khac'), cta: 'Xem các dự án khác →', items: ['Ban quản lý dự án, đơn vị sự nghiệp công lập', 'Cơ quan chuyên môn, tổ chức ngành dọc tại địa phương', 'Khảo sát để lựa chọn dịch vụ và phần mềm phù hợp'] },
     ],
     { cols: 4, size: 'md', whole: false, cta: 'Xem dự án liên quan →' },
   ),
 });
 
-const work = section({
+const work = ifProjects(section({
   tone: 'soft',
   title: 'Dự án đã thực hiện',
   lead: 'Kinh nghiệm được thể hiện bằng kết quả thực tế.',
   more: { text: 'Toàn bộ dự án →', href: '/du-an/' },
   body: projectCards(projects.slice(0, 3)),
-});
+}));
 
 const tech = navyBlock({
   title: 'Tối ưu quy trình nhờ công nghệ tự động hoá',

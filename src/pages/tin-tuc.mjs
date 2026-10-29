@@ -1,4 +1,5 @@
 import { btns } from '../lib.mjs';
+import { ifProjects } from '../data/site.mjs';
 
 export default {
   path: '/tin-tuc/',
@@ -11,7 +12,7 @@ export default {
 <section class="hero"><div class="wrap">
   <p class="kicker">Tin tức</p>
   <h1>Tin tức đang được cập nhật</h1>
-  <p class="lead" style="max-width:62ch">Chuyên mục tin tức và tài liệu chuyên môn của HT DATA sẽ sớm ra mắt. Trong thời gian này, đơn vị có thể xem các dự án đã thực hiện hoặc liên hệ trực tiếp để được tư vấn.</p>
-  ${btns([{ text: 'Xem dự án đã thực hiện', href: '/du-an/' }, { text: 'Liên hệ HT DATA', href: '/lien-he/', primary: false }])}
+  <p class="lead" style="max-width:62ch">Chuyên mục tin tức và tài liệu chuyên môn của HT DATA sẽ sớm ra mắt. Trong thời gian này, đơn vị có thể ${ifProjects('xem các dự án đã thực hiện', 'tìm hiểu các dịch vụ')} hoặc liên hệ trực tiếp để được tư vấn.</p>
+  ${btns([ifProjects({ text: 'Xem dự án đã thực hiện', href: '/du-an/' }, { text: 'Xem dịch vụ', href: '/dich-vu/chinh-ly-tai-lieu/' }), { text: 'Liên hệ HT DATA', href: '/lien-he/', primary: false }])}
 </div></section>`,
 };

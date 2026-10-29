@@ -100,7 +100,7 @@ export const bulletCards = (items, { cols = 2, size = '', whole = true, cta = 'T
     .map((it) =>
       whole
         ? `<a class="card card-flex bcard ${size}" href="${it.href}"><span class="card-t">${it.t}</span>${dots(it.items, 'sm')}<span class="card-cta">${it.cta || cta}</span></a>`
-        : `<div class="card card-flex bcard ${size}"><p class="card-t">${it.t}</p>${dots(it.items, 'sm')}<a class="card-link" href="${it.href}">${it.cta || cta}</a></div>`,
+        : `<div class="card card-flex bcard ${size}"><p class="card-t">${it.t}</p>${dots(it.items, 'sm')}${it.href ? `<a class="card-link" href="${it.href}">${it.cta || cta}</a>` : ''}</div>`,
     )
     .join('')}</div>`;
 

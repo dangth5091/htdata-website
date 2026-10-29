@@ -1,4 +1,8 @@
 import { section, cards, listCards, imageCards, dots, cta, v } from '../lib.mjs';
+import { ifProjects } from '../data/site.mjs';
+
+// Khi ẩn khối "Khối lượng đã thực hiện", đảo nền các section phía sau để giữ nhịp trắng / xám.
+const after = (tone) => ifProjects(tone, tone === 'soft' ? '' : 'soft');
 
 const panel = (items) => `<div class="card">${dots(items, 'two')}</div>`;
 
@@ -82,7 +86,7 @@ export default {
         ['Công nghệ', 'AI, OCR, ICR, OMR và các phần mềm do HT DATA phát triển'],
       ]),
     }),
-    section({
+    ifProjects(section({
       tone: 'soft',
       title: 'Khối lượng đã thực hiện',
       lead: `Số liệu được tổng hợp từ các dự án đã nghiệm thu và cập nhật đến ${v('[tháng/năm]')}.`,
@@ -92,8 +96,9 @@ export default {
         [v('[Số liệu]'), 'Hợp đồng đã hoàn thành'],
         [v('[Số liệu]'), 'Tỉnh, thành phố đã triển khai'],
       ]),
-    }),
+    })),
     section({
+      tone: after(''),
       title: 'Cơ sở vận hành',
       lead: 'HT DATA tổ chức khu vực tiếp nhận, xử lý và lưu giữ tài liệu phù hợp với từng loại dự án.',
       body: imageCards([
@@ -103,7 +108,7 @@ export default {
       ]),
     }),
     section({
-      tone: 'soft',
+      tone: after('soft'),
       title: 'Kiểm soát chất lượng',
       lead: 'Mỗi lô tài liệu được theo dõi từ khi tiếp nhận đến khi nghiệm thu và bàn giao.',
       body: cards([
@@ -114,6 +119,7 @@ export default {
       ]),
     }),
     section({
+      tone: after(''),
       title: 'An toàn và bảo mật',
       lead: 'Các biện pháp bảo mật được áp dụng theo yêu cầu của từng đơn vị và mô hình triển khai.',
       body: panel([
@@ -126,7 +132,7 @@ export default {
       ]),
     }),
     section({
-      tone: 'soft',
+      tone: after('soft'),
       title: 'Chứng nhận đang duy trì',
       body: cards(
         [
@@ -139,7 +145,7 @@ export default {
       ),
     }),
     cta({
-      tone: 'white',
+      tone: ifProjects('white', ''),
       title: 'Trao đổi về nhu cầu của đơn vị',
       text: 'Cung cấp loại hồ sơ, khối lượng dự kiến và yêu cầu triển khai để HT DATA đề xuất phương án phù hợp.',
       buttons: [{ text: 'Liên hệ tư vấn', href: '/lien-he/', lg: true }],

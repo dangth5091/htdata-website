@@ -2,7 +2,7 @@
 // Mỗi trang đều để lại hotline — người dùng là cán bộ cơ quan cần liên hệ được ngay cả khi website lỗi.
 // GitHub Pages chỉ tự dùng 404.html; 500.html và 503.html dành cho máy chủ (vd. nginx error_page) hoặc khi bật bảo trì.
 import { btns, v } from '../lib.mjs';
-import { site, services } from '../data/site.mjs';
+import { site, services, ifProjects } from '../data/site.mjs';
 
 const tel = `tel:${site.hotlineTel}`;
 const mail = `mailto:${site.email}`;
@@ -26,7 +26,7 @@ const emailRow = contactRow('Email', `<a class="err-mail" href="${mail}">${site.
 
 const reloadBtn = `<button class="btn btn-p btn-lg" type="button" onclick="location.reload()">Tải lại trang</button>`;
 
-const suggest = [...services, { t: 'Dự án đã thực hiện', href: '/du-an/' }];
+const suggest = [...services, ...ifProjects([{ t: 'Dự án đã thực hiện', href: '/du-an/' }], [])];
 
 const page404 = {
   path: '/404.html',

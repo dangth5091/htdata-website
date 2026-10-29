@@ -31,11 +31,17 @@ export const software = [
   { t: 'Quản lý mượn – trả', short: 'Quản lý mượn – trả', href: '/phan-mem/quan-ly-muon-tra/' },
 ];
 
+/* TẠM ẨN DỰ ÁN: false = ẩn trang /du-an/, case study, mục menu "Dự án", các khối dự án và số liệu khối lượng.
+   Đổi thành true để hiện lại toàn bộ — nội dung vẫn giữ nguyên trong code. */
+export const SHOW_PROJECTS = false;
+/** Trả về x khi đang hiện dự án, ngược lại trả về alt. */
+export const ifProjects = (x, alt = '') => (SHOW_PROJECTS ? x : alt);
+
 export const nav = [
   { key: 'home', t: 'Trang chủ', href: '/' },
   { key: 'dich-vu', t: 'Dịch vụ', children: services },
   { key: 'phan-mem', t: 'Phần mềm', children: software },
-  { key: 'du-an', t: 'Dự án', href: '/du-an/' },
+  ...ifProjects([{ key: 'du-an', t: 'Dự án', href: '/du-an/' }], []),
   { key: 'gioi-thieu', t: 'Giới thiệu', href: '/ve-ht-data/' },
   { key: 'tin-tuc', t: 'Tin tức', href: '/tin-tuc/' },
   { key: 'lien-he', t: 'Liên hệ', href: '/lien-he/', cta: true },

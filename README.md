@@ -49,6 +49,10 @@ Mọi vị trí ảnh đang là khung chờ có chú thích. Muốn thay, đặt
 2. GitHub → repo → Settings → Pages → Custom domain: nhập `htdata.vn`, bật **Enforce HTTPS** khi có chứng chỉ.
 3. Chạy lại workflow (hoặc đẩy một commit) — đường dẫn tự chuyển về gốc tên miền.
 
+## Tạm ẩn / hiện lại phần dự án
+
+Đang **ẩn** (`SHOW_PROJECTS = false` trong `src/data/site.mjs`): trang `/du-an/` và các case study không được dựng; menu không có mục "Dự án"; các khối dự án, nút "Xem dự án…" và số liệu khối lượng (1,2 triệu trang, 3.400 mét giá, khối "Khối lượng đã thực hiện") không hiển thị. Đổi thành `true` rồi build để hiện lại — nội dung vẫn giữ nguyên trong code.
+
 ## Thêm dự án / case study
 
 - Dự án mới: thêm một mục vào `projects` trong `src/data/site.mjs` (thẻ ở trang chủ, trang dịch vụ, trang Dự án và chip lọc tự cập nhật).
