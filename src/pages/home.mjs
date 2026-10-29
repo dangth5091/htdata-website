@@ -25,7 +25,7 @@ const stats = SHOW_STATS && statStrip([
     { n: v('1,2 triệu'), l: 'Trang tài liệu đã số hóa' },
     { n: v('3.400'), l: 'Mét giá đã chỉnh lý' },
   ], []),
-  { n: v('500+'), l: 'Nhân sự chính thức và thời vụ' },
+  { n: '100+', l: 'Nhân sự triển khai' },
 ]);
 
 const services = section({
