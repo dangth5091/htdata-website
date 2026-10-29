@@ -430,7 +430,11 @@ a.prow:hover { border-color: var(--blue); box-shadow: 0 12px 30px rgba(31,95,208
 .cinfo .note { font-size: 13px; color: var(--muted); margin-top: 6px; }
 .cinfo p { font-size: 15px; line-height: 24px; }
 .map { border-radius: 12px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 4 / 3; background: #e9eef6; }
+.map { position: relative; }
 .map iframe { width: 100%; height: 100%; border: 0; display: block; }
+.map-label { position: absolute; top: 10px; left: 10px; max-width: calc(100% - 20px); background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(16,42,76,0.18); padding: 10px 12px; }
+.map-label p { font-size: 13.5px; line-height: 20px; font-weight: 600; color: var(--text); }
+.map-label a { font-size: 13px; font-weight: 600; display: inline-block; margin-top: 4px; }
 .form-card { border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
 .form-card h2 { font-size: 20px; font-weight: 600; margin-bottom: 20px; letter-spacing: 0; }
 .form { display: grid; gap: 16px; }

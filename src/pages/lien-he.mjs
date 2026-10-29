@@ -9,7 +9,10 @@ const provinces = [
   'Quảng Ninh', 'Quảng Trị', 'Sơn La', 'Tây Ninh', 'Thái Nguyên', 'Thanh Hóa', 'Tuyên Quang', 'Vĩnh Long',
 ];
 
-const mapSrc = 'https://www.google.com/maps?q=' + encodeURIComponent('85 Lạc Long Quân, Phường Bình Thới, TP. Hồ Chí Minh') + '&output=embed';
+// Ghim theo tọa độ (không theo địa chỉ): tìm theo địa chỉ, Google tự khớp vào cửa hàng tại số nhà này và hiện tên cửa hàng.
+const MAP_LATLNG = '10.7591591,106.641487';
+const mapSrc = `https://www.google.com/maps?q=${MAP_LATLNG}&z=17&output=embed`;
+const mapLink = `https://www.google.com/maps?q=${MAP_LATLNG}`;
 
 const field = (id, label, input, { req = true, opt = '', hint = '', err = '' } = {}) => `
   <div class="f"><label for="${id}">${label}${req ? ' <span class="req" aria-hidden="true">*</span>' : opt ? ` <span class="opt">${opt}</span>` : ''}</label>${input}${hint ? `<p class="hint" id="${id}-hint">${hint}</p>` : ''}${err ? `<p class="err" id="${id}-err">${err}</p>` : ''}</div>`;
@@ -22,7 +25,7 @@ const form = `
     ${field('f-org', 'Cơ quan / đơn vị', '<input id="f-org" name="org" type="text" autocomplete="organization" placeholder="VD: Sở Nội vụ tỉnh…" required aria-describedby="f-org-err">', { err: 'Vui lòng nhập tên cơ quan, đơn vị' })}
     <div class="f-row">
       ${field('f-tel', 'Điện thoại', '<input id="f-tel" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required aria-describedby="f-tel-err">', { err: 'Số điện thoại không hợp lệ' })}
-      ${field('f-mail', 'Email', '<input id="f-mail" name="email" type="email" autocomplete="email" placeholder="email@donvi.gov.vn" aria-describedby="f-mail-hint f-mail-err">', { req: false, opt: '(không bắt buộc)', hint: 'Điền nếu đơn vị muốn nhận dự toán bằng văn bản.', err: 'Email không hợp lệ' })}
+      ${field('f-mail', 'Email', '<input id="f-mail" name="email" type="email" autocomplete="email" placeholder="email@donvi.gov.vn" aria-describedby="f-mail-err">', { req: false, opt: '(không bắt buộc)', err: 'Email không hợp lệ' })}
     </div>
     ${field('f-need', 'Nhu cầu', '<textarea id="f-need" name="need" rows="3" placeholder="VD: chỉnh lý khoảng 300 mét giá hồ sơ hành chính, cần hoàn thành trong năm nay" required aria-describedby="f-need-err"></textarea>', { err: 'Vui lòng mô tả ngắn nhu cầu của đơn vị' })}
     <details class="opt-group" open><summary>Thông tin thêm (không bắt buộc)${icon.chev('#1f5fd0')}</summary>
@@ -34,7 +37,6 @@ const form = `
     <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
     <p class="form-msg" role="alert"></p>
     <button class="btn btn-p btn-lg" type="submit">Gửi yêu cầu khảo sát</button>
-    <p class="form-note">Thông tin chỉ dùng để liên hệ tư vấn, không chia sẻ cho bên thứ ba.</p>
   </form>
   <div class="form-ok" aria-live="polite">
     <div class="ok-ic">${icon.check()}</div>
@@ -62,7 +64,7 @@ export default {
       <div><span class="label">Trụ sở</span><p>${site.address}</p></div>
       <div><span class="label">Pháp nhân</span><p>${site.legalName} — MST ${site.taxId}</p></div>
     </div>
-    <div class="map"><iframe src="${mapSrc}" title="Bản đồ trụ sở HT DATA — ${site.address}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <div class="map"><iframe src="${mapSrc}" title="Bản đồ trụ sở HT DATA — ${site.address}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="map-label"><p>${site.address}</p><a href="${mapLink}" target="_blank" rel="noopener">Mở Google Maps ↗</a></div></div>
   </div>
   <div class="form-col">${form}
     <div class="card" id="ho-so-nang-luc" style="margin-top:18px">
