@@ -9,7 +9,7 @@ const hero = `
     ${btns([{ text: 'Đăng ký demo', href: '/lien-he/?demo' }])}
   </div>
   <figure style="margin:0">
-    <div class="zoomable" title="Bấm để phóng to">${img('pm-kho', 'Ảnh giao diện: sơ đồ kho hoặc màn hình thông tin hồ sơ cùng vị trí lưu trữ', '16-9', 'app-shot')}</div>
+    <div class="zoomable" title="Bấm để phóng to">${img('pm-kho', 'Ảnh giao diện: sơ đồ kho hoặc màn hình thông tin hồ sơ cùng vị trí lưu trữ', '16-9', 'app-shot eager')}</div>
     <figcaption style="font-size:13px;line-height:21px;color:var(--muted);margin-top:10px">Chọn một hộp trên sơ đồ kho là thấy đủ hồ sơ bên trong</figcaption>
   </figure>
 </div></section>`;

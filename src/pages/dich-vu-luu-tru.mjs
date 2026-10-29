@@ -12,7 +12,7 @@ const hero = `
       { text: 'Xem phần mềm quản lý hồ sơ', href: '/phan-mem/quan-ly-kho-luu-tru/', primary: false },
     ])}
   </div>
-  ${img('dv-luu-tru', 'Ảnh thật: kho hồ sơ có mã vị trí, hộp và giá được sắp xếp rõ ràng', '4-3')}
+  ${img('dv-luu-tru', 'Ảnh giao diện phần mềm quản lý kho: sơ đồ kệ, hộp và danh sách hồ sơ theo vị trí', '4-3', 'app-shot eager zoomable')}
 </div></section>`;
 
 // Khối navy dạng dải: tiêu đề + mô tả + liên kết, không có lưới thẻ (navyBlock không phù hợp).

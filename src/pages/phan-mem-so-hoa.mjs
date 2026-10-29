@@ -8,7 +8,7 @@ const hero = `
     <p class="lead">Công nghệ OCR và AI tự động nhận dạng nội dung, trích xuất các trường mục lục và xác định tiêu đề hồ sơ.</p>
     ${btns([{ text: 'Đăng ký demo', href: '/lien-he/?demo' }])}
   </div>
-  <figure style="margin:0" class="zoomable" title="Bấm để phóng to">${img('pm-so-hoa', 'Ảnh giao diện: bản quét bên trái, nội dung nhận dạng và các trường thông tin bên phải', '16-9', 'app-shot')}</figure>
+  <figure style="margin:0" class="zoomable" title="Bấm để phóng to">${img('pm-so-hoa', 'Ảnh giao diện: bản quét bên trái, nội dung nhận dạng và các trường thông tin bên phải', '16-9', 'app-shot eager')}</figure>
 </div></section>`;
 
 export default {

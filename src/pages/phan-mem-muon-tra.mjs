@@ -9,7 +9,7 @@ const hero = `
     ${btns([{ text: 'Đăng ký demo', href: '/lien-he/?demo' }])}
   </div>
   <figure style="margin:0">
-    <div class="zoomable" title="Bấm để phóng to">${img('pm-muon-tra', 'Ảnh giao diện: danh sách yêu cầu mượn với trạng thái, người mượn, ngày nhận và hạn trả', '16-9', 'app-shot')}</div>
+    <div class="zoomable" title="Bấm để phóng to">${img('pm-muon-tra', 'Ảnh giao diện: danh sách yêu cầu mượn với trạng thái, người mượn, ngày nhận và hạn trả', '16-9', 'app-shot eager')}</div>
     <figcaption style="font-size:13px;line-height:21px;color:var(--muted);margin-top:10px">Phiếu chia theo trạng thái chờ duyệt, đang giữ, quá hạn</figcaption>
   </figure>
 </div></section>`;

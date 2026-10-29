@@ -1,5 +1,5 @@
 // Thành phần dùng chung để dựng trang. Mỗi hàm trả về chuỗi HTML.
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site, nav } from './data/site.mjs';
@@ -33,13 +33,34 @@ export const icon = {
 export const logo = (size = 32, light = false) =>
   `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M0 0H12V20H16V16H28V48H16V28H0Z M0 32H12V48H0Z" fill="${light ? '#4e9af5' : '#1f5fd0'}"/><path d="M11.94 0H48V12H11.94Z M32 16H48V24H44V48H32Z" fill="${light ? '#ffffff' : '#102a4c'}"/></svg>`;
 
-// ── Ảnh: dùng ảnh thật nếu có file assets/img/<id>.*, nếu chưa thì khung chờ ──
+// ── Ảnh: chỉ hiển thị khi có file assets/img/<id>.(webp|jpg|jpeg|png); chưa có file thì ẩn hẳn vị trí đó ──
+const findImg = (id) => ['webp', 'jpg', 'jpeg', 'png'].map((e) => `${id}.${e}`).find((f) => existsSync(join(IMG_DIR, f)));
+export const hasImg = (id) => Boolean(findImg(id));
+
+/** Kích thước ảnh JPEG/PNG (đọc header) — ghi width/height để trang không giật khi ảnh tải. */
+function imgSize(file) {
+  const b = readFileSync(join(IMG_DIR, file));
+  if (b[0] === 0x89 && b[1] === 0x50) return [b.readUInt32BE(16), b.readUInt32BE(20)];
+  for (let i = 2; i < b.length - 9; ) {
+    if (b[i] !== 0xff) { i++; continue; }
+    const m = b[i + 1];
+    if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) return [b.readUInt16BE(i + 7), b.readUInt16BE(i + 5)];
+    i += 2 + b.readUInt16BE(i + 2);
+  }
+  return null;
+}
+
+/**
+ * cls 'app-shot' (ảnh chụp màn hình phần mềm): giữ nguyên tỷ lệ gốc, không cắt.
+ * cls 'eager': ảnh ở đầu trang, tải ngay thay vì tải chậm.
+ */
 export function img(id, alt, ratio = '4-3', cls = '') {
-  const file = ['webp', 'jpg', 'jpeg', 'png'].map((e) => `${id}.${e}`).find((f) => existsSync(join(IMG_DIR, f)));
-  const inner = file
-    ? `<img src="/assets/img/${file}" alt="${attr(alt)}" loading="lazy" decoding="async">`
-    : `<div class="ph" role="img" aria-label="${attr(alt)}">${icon.image()}<span>${esc(alt)}</span></div>`;
-  return `<div class="media r-${ratio} ${cls}" data-img="${id}">${inner}</div>`;
+  const file = findImg(id);
+  if (!file) return '';
+  const size = imgSize(file);
+  const natural = cls.includes('app-shot');
+  const eager = cls.includes('eager');
+  return `<div class="media ${natural ? 'r-natural' : `r-${ratio}`} ${cls}" data-img="${id}"><img src="/assets/img/${file}" alt="${attr(alt)}"${size ? ` width="${size[0]}" height="${size[1]}"` : ''}${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></div>`;
 }
 
 // ── Khối chữ ──────────────────────────────────────────

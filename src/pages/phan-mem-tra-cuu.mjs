@@ -1,4 +1,4 @@
-import { section, cards, steps, listCards, linkCards, spec, faq, cta, callBtn, img, btns } from '../lib.mjs';
+import { hasImg, section, cards, steps, listCards, linkCards, spec, faq, cta, callBtn, img, btns } from '../lib.mjs';
 
 const hero = `
 <section class="hero"><div class="wrap hero-app">
@@ -8,10 +8,10 @@ const hero = `
     <p class="lead">Phần mềm cho phép tìm kiếm theo thông tin hồ sơ hoặc nội dung toàn văn, xem tài liệu số và khai thác dữ liệu theo quyền được cấp.</p>
     ${btns([{ text: 'Đăng ký demo', href: '/lien-he/?demo' }])}
   </div>
-  <figure style="margin:0">
-    <div class="zoomable" title="Bấm để phóng to">${img('pm-tra-cuu', 'Ảnh giao diện: kết quả tìm kiếm, bộ lọc bên trái và vùng xem tài liệu bên phải', '16-9', 'app-shot')}</div>
+  ${hasImg('pm-tra-cuu') ? `  <figure style="margin:0">
+    <div class="zoomable" title="Bấm để phóng to">${img('pm-tra-cuu', 'Ảnh giao diện: kết quả tìm kiếm, bộ lọc bên trái và vùng xem tài liệu bên phải', '16-9', 'app-shot eager')}</div>
     <figcaption style="font-size:13px;line-height:21px;color:var(--muted);margin-top:10px">Kết quả mở thẳng trang chứa từ khóa, không phải tải file về</figcaption>
-  </figure>
+  </figure>` : ''}
 </div></section>`;
 
 export default {

@@ -12,7 +12,7 @@ const hero = `
       ...ifProjects([{ text: 'Xem dự án số hóa', href: '/du-an/?dich-vu=so-hoa', primary: false }], []),
     ])}
   </div>
-  ${img('dv-so-hoa', 'Ảnh thật: nhân sự vận hành máy scan hoặc kiểm tra hình ảnh sau quét', '4-3')}
+  ${img('dv-so-hoa', 'Ảnh giao diện phần mềm số hóa: bản quét và mục lục hồ sơ được trích xuất', '4-3', 'app-shot eager zoomable')}
 </div></section>`;
 
 // Khối navy dạng dải: tiêu đề + mô tả + liên kết, không có lưới thẻ (navyBlock không phù hợp).

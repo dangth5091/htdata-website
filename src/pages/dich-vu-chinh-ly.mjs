@@ -12,7 +12,7 @@ const hero = `
       ...ifProjects([{ text: 'Xem dự án chỉnh lý', href: '/du-an/?dich-vu=chinh-ly', primary: false }], []),
     ])}
   </div>
-  ${img('dv-chinh-ly', 'Ảnh thật: nhân sự HT DATA đang phân loại hoặc biên mục hồ sơ tại đơn vị', '4-3')}
+  ${img('dv-chinh-ly', 'Hồ sơ được phân loại và lập hồ sơ ngay tại phòng làm việc của đơn vị', '4-3', 'eager')}
 </div></section>`;
 
 export default {

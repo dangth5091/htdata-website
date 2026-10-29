@@ -23,7 +23,7 @@ Mỗi lần đẩy lên nhánh `main`, GitHub Actions tự dựng và triển kh
 
 ## Thay ảnh
 
-Mọi vị trí ảnh đang là khung chờ có chú thích. Muốn thay, đặt file vào `src/assets/img/` với đúng tên mã ảnh (đuôi `.webp`, `.jpg` hoặc `.png`), rồi build lại — không cần sửa code. Nên nén ảnh, rộng tối đa ~1600px.
+Vị trí nào **chưa có file ảnh thì được ẩn hẳn** (phần đầu trang tự chuyển về một cột). Muốn thêm ảnh: đặt file vào `src/assets/img/` với đúng tên mã ảnh (đuôi `.webp`, `.jpg` hoặc `.png`), rồi build lại — không cần sửa code. Ảnh gốc để ở thư mục `../anh-goc/` (ngoài repo); ảnh đưa vào site cần thu nhỏ (ảnh chụp ~1200px, ảnh màn hình ~1600px) và nén JPEG. Ảnh chụp màn hình phần mềm (khung có class `app-shot`) giữ nguyên tỷ lệ gốc, không bị cắt.
 
 | Mã ảnh | Vị trí |
 |---|---|

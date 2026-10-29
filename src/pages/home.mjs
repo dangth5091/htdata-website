@@ -11,7 +11,7 @@ const hero = `
       ...ifProjects([{ text: 'Dự án đã thực hiện', href: '/du-an/', primary: false, lg: true }], []),
     ])}
   </div>
-  ${img('home-hero', 'Ảnh thật: nhân sự HT DATA chỉnh lý hồ sơ tại kho của đơn vị', '4-3', 'framed')}
+  ${img('home-hero', 'Khối hồ sơ đang được chỉnh lý, xếp theo từng lô tại kho của đơn vị', '4-3', 'framed eager')}
 </div></section>`;
 
 // TẠM ẨN dải số liệu dưới hero. Đổi thành true để hiện lại; nền các khối bên dưới tự đảo theo.

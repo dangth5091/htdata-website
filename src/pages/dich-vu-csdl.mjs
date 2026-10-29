@@ -12,7 +12,7 @@ const hero = `
       ...ifProjects([{ text: 'Xem dự án liên quan', href: '/du-an/?dich-vu=co-so-du-lieu', primary: false }], []),
     ])}
   </div>
-  ${img('dv-csdl', 'Ảnh thật: nhân sự nhập liệu hoặc màn hình kiểm tra dữ liệu (đã ẩn thông tin nhạy cảm)', '4-3')}
+  ${img('dv-csdl', 'Ảnh thật: nhân sự nhập liệu hoặc màn hình kiểm tra dữ liệu (đã ẩn thông tin nhạy cảm)', '4-3', 'eager')}
 </div></section>`;
 
 // Khối navy dạng dải: tiêu đề + mô tả + liên kết, không có lưới thẻ (navyBlock không phù hợp).
