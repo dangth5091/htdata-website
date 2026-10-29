@@ -79,7 +79,7 @@ export default {
       lead: 'Nguồn lực được bố trí theo khối lượng, loại tài liệu, yêu cầu tiến độ và địa điểm thực hiện của từng dự án.',
       body: cells([
         ['Nhân sự triển khai', 'Hơn 100 nhân sự'],
-        ['Cơ sở vận hành', '2 cơ sở xử lý và vận hành'],
+        ['Cơ sở vận hành', '3 cơ sở xử lý và vận hành'],
         ['Khung giờ sản xuất', 'Có thể tổ chức hai ca từ 6 giờ đến 20 giờ'],
         ['Khổ tài liệu', 'Từ A0 đến A5, hồ sơ đóng gáy và bản vẽ khổ lớn'],
         ['Năng lực số hóa', 'Hơn 4.000 trang A4 mỗi ngày'],
