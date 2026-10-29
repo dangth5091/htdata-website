@@ -39,7 +39,7 @@ export function img(id, alt, ratio = '4-3', cls = '') {
   const inner = file
     ? `<img src="/assets/img/${file}" alt="${attr(alt)}" loading="lazy" decoding="async">`
     : `<div class="ph" role="img" aria-label="${attr(alt)}">${icon.image()}<span>${esc(alt)}</span></div>`;
-  return `<div class="media r-${ratio} ${cls}">${inner}</div>`;
+  return `<div class="media r-${ratio} ${cls}" data-img="${id}">${inner}</div>`;
 }
 
 // ── Khối chữ ──────────────────────────────────────────

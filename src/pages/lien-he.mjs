@@ -68,8 +68,8 @@ export default {
   </div>
   <div class="form-col">${form}
     <div class="card" id="ho-so-nang-luc" style="margin-top:18px">
-      <p class="card-t">Cần hồ sơ năng lực bản có dấu, hoặc tài liệu phục vụ mời thầu?</p>
-      <p class="card-d">Liên hệ Bộ phận Dự án — Hồ sơ năng lực: <a href="tel:${site.hotlineTel}">${site.hotline}</a> · <a href="mailto:${site.email}">${site.email}</a>. Bản có dấu gửi qua đường công văn trong 2 ngày làm việc.</p>
+      <p class="card-t">Yêu cầu hồ sơ năng lực hoặc tài liệu phục vụ mời thầu?</p>
+      <p class="card-d">Gửi yêu cầu qua email hoặc gọi <a href="tel:${site.hotlineTel}">${site.hotline}</a>, Bộ phận Quản lý dự án sẽ liên hệ lại trong vòng 24 giờ làm việc để xác nhận nhu cầu và gửi hồ sơ cho đơn vị.</p>
       <p style="margin-top:14px"><a class="btn btn-s" href="mailto:${site.email}?subject=${encodeURIComponent('Yêu cầu hồ sơ năng lực HT DATA')}">Gửi yêu cầu qua email</a></p>
     </div>
   </div>
