@@ -1,7 +1,7 @@
 import { btns } from '../lib.mjs';
-import { ifProjects } from '../data/site.mjs';
+import { ifProjects, SHOW_NEWS } from '../data/site.mjs';
 
-export default {
+const page = {
   path: '/tin-tuc/',
   nav: 'tin-tuc',
   crumb: [{ t: 'Tin tức' }],
@@ -16,3 +16,6 @@ export default {
   ${btns([ifProjects({ text: 'Xem dự án đã thực hiện', href: '/du-an/' }, { text: 'Xem dịch vụ', href: '/dich-vu/chinh-ly-tai-lieu/' }), { text: 'Liên hệ HT DATA', href: '/lien-he/', primary: false }])}
 </div></section>`,
 };
+
+// Tạm ẩn khi SHOW_NEWS = false (không dựng trang).
+export default SHOW_NEWS ? page : [];

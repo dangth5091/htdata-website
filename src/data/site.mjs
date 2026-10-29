@@ -37,13 +37,16 @@ export const SHOW_PROJECTS = false;
 /** Trả về x khi đang hiện dự án, ngược lại trả về alt. */
 export const ifProjects = (x, alt = '') => (SHOW_PROJECTS ? x : alt);
 
+/* TẠM ẨN TIN TỨC: false = không dựng trang /tin-tuc/ và bỏ mục "Tin tức" khỏi menu. Đổi thành true để hiện lại. */
+export const SHOW_NEWS = false;
+
 export const nav = [
   { key: 'home', t: 'Trang chủ', href: '/' },
   { key: 'dich-vu', t: 'Dịch vụ', children: services },
   { key: 'phan-mem', t: 'Phần mềm', children: software },
   ...ifProjects([{ key: 'du-an', t: 'Dự án', href: '/du-an/' }], []),
   { key: 'gioi-thieu', t: 'Giới thiệu', href: '/ve-ht-data/' },
-  { key: 'tin-tuc', t: 'Tin tức', href: '/tin-tuc/' },
+  ...(SHOW_NEWS ? [{ key: 'tin-tuc', t: 'Tin tức', href: '/tin-tuc/' }] : []),
   { key: 'lien-he', t: 'Liên hệ', href: '/lien-he/', cta: true },
 ];
 

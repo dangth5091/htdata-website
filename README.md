@@ -53,6 +53,10 @@ Mọi vị trí ảnh đang là khung chờ có chú thích. Muốn thay, đặt
 
 Đang **ẩn** (`SHOW_PROJECTS = false` trong `src/data/site.mjs`): trang `/du-an/` và các case study không được dựng; menu không có mục "Dự án"; các khối dự án, nút "Xem dự án…" và số liệu khối lượng (1,2 triệu trang, 3.400 mét giá, khối "Khối lượng đã thực hiện") không hiển thị. Đổi thành `true` rồi build để hiện lại — nội dung vẫn giữ nguyên trong code.
 
+## Tạm ẩn / hiện lại trang Tin tức
+
+Đang **ẩn** (`SHOW_NEWS = false` trong `src/data/site.mjs`): không dựng `/tin-tuc/`, menu không có mục "Tin tức". Đổi thành `true` để hiện lại.
+
 ## Thêm dự án / case study
 
 - Dự án mới: thêm một mục vào `projects` trong `src/data/site.mjs` (thẻ ở trang chủ, trang dịch vụ, trang Dự án và chip lọc tự cập nhật).
