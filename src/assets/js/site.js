@@ -197,6 +197,42 @@
       el.setAttribute('aria-invalid', String(!ok));
       return ok;
     }
+    /* Chống spam ngầm (không hiện captcha):
+       1. Bẫy honeypot: ô _honey ẩn, người thật không thấy nên không điền. FormSubmit cũng kiểm tra lại ở máy chủ.
+       2. Bẫy thời gian: gửi trong vòng 4 giây sau khi mở trang → máy tự điền.
+       3. Bẫy tương tác: không có thao tác phím / chuột / chạm nào trên form → máy tự điền.
+       4. Nội dung chứa từ 2 đường link trở lên → coi là quảng cáo.
+       Bị nghi spam thì vẫn hiện "Đã nhận yêu cầu" như thường nhưng KHÔNG gửi, để bot không biết mà đổi cách.
+       5. Giới hạn: mỗi trình duyệt chỉ gửi 1 yêu cầu / 60 giây. */
+    var openedAt = Date.now();
+    var touched = false;
+    ['keydown', 'pointerdown', 'touchstart', 'input'].forEach(function (ev) {
+      form.addEventListener(ev, function (e) { if (e.isTrusted) touched = true; }, { passive: true });
+    });
+    function looksLikeSpam(data) {
+      if (data._honey) return true;
+      if (Date.now() - openedAt < 4000) return true;
+      if (!touched) return true;
+      var links = (String(data.need || '') + ' ' + String(data.org || '')).match(/https?:\/\/|www\./gi);
+      return Boolean(links && links.length >= 2);
+    }
+    var LAST_KEY = 'ht-last-submit';
+    function recentlySent() {
+      try { return Date.now() - Number(localStorage.getItem(LAST_KEY) || 0) < 60000; } catch (err) { return false; }
+    }
+    function markSent() {
+      try { localStorage.setItem(LAST_KEY, String(Date.now())); } catch (err) { /* trình duyệt chặn lưu trữ */ }
+    }
+    function showOk(code, hasEmail) {
+      form.hidden = true;
+      var ok = $('.form-ok');
+      $('.code', ok).textContent = code;
+      $('[data-email-note]', ok).hidden = !hasEmail;
+      ok.classList.add('show');
+      ok.setAttribute('tabindex', '-1');
+      ok.focus();
+    }
+
     Object.keys(rules).forEach(function (n) {
       var el = form.elements[n];
       if (!el) return;
@@ -212,7 +248,10 @@
         msg.textContent = 'Vui lòng kiểm tra các trường được đánh dấu.';
         return;
       }
-      if (form.elements._honey && form.elements._honey.value) return;
+      if (recentlySent()) {
+        msg.textContent = 'Đơn vị vừa gửi một yêu cầu. Vui lòng chờ khoảng 1 phút trước khi gửi tiếp, hoặc gọi hotline 0911.515.032.';
+        return;
+      }
       msg.textContent = '';
       var btnEl = $('button[type=submit]', form);
       var label = btnEl.textContent;
@@ -226,6 +265,12 @@
       data._subject = 'Yêu cầu khảo sát ' + code + ' — ' + (data.org || '');
       data._template = 'table';
       data._captcha = 'false';
+      // Gửi email xác nhận cho người gửi nếu họ điền email (FormSubmit dùng ô có tên "email").
+      if (data.email) data._autoresponse = 'HT DATA đã nhận yêu cầu khảo sát của đơn vị (mã theo dõi ' + code + '). Chuyên viên sẽ liên hệ trong 24 giờ làm việc để xác nhận nhu cầu và đề xuất mốc khảo sát. Hotline: 0911.515.032.';
+      if (looksLikeSpam(data)) {
+        setTimeout(function () { showOk(code, Boolean(data.email)); }, 600);
+        return;
+      }
       fetch(window.HT.form, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -233,13 +278,8 @@
       })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || j.success === 'false' || j.success === false) throw new Error(j.message || 'send'); }); })
         .then(function () {
-          form.hidden = true;
-          var ok = $('.form-ok');
-          $('.code', ok).textContent = code;
-          $('[data-email-note]', ok).hidden = !data.email;
-          ok.classList.add('show');
-          ok.setAttribute('tabindex', '-1');
-          ok.focus();
+          markSent();
+          showOk(code, Boolean(data.email));
         })
         .catch(function () {
           btnEl.disabled = false;
