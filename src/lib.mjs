@@ -31,7 +31,7 @@ export const icon = {
 };
 
 export const logo = (size = 32, light = false) =>
-  `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M0 0H12V20H16V16H28V48H16V28H0Z M0 32H12V48H0Z" fill="${light ? '#4e9af5' : '#1f5fd0'}"/><path d="M11.94 0H48V12H11.94Z M32 16H48V24H44V48H32Z" fill="${light ? '#ffffff' : '#102a4c'}"/></svg>`;
+  `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M0 0H12.5V12H12V20H16V16H28V48H16V28H0Z M0 32H12V48H0Z" fill="${light ? '#4e9af5' : '#1f5fd0'}"/><path d="M12 0H48V12H12Z M32 16H48V24H44V48H32Z" fill="${light ? '#ffffff' : '#102a4c'}"/></svg>`;
 
 // ── Ảnh: chỉ hiển thị khi có file assets/img/<id>.(webp|jpg|jpeg|png); chưa có file thì ẩn hẳn vị trí đó ──
 const findImg = (id) => ['webp', 'jpg', 'jpeg', 'png'].map((e) => `${id}.${e}`).find((f) => existsSync(join(IMG_DIR, f)));
